@@ -58,7 +58,6 @@ SRC += $(STMSPDSRCDIR)/$(CHIP_LINE)_syscfg.c
 # USB
 SRC += $(USBSOURCES)/usb_core.c
 SRC += $(USBSOURCES)/usbd_core.c
-SRC += $(USBSOURCES)/usbd_hid_core.c
 SRC += $(USBSOURCES)/usbd_ioreq.c
 SRC += $(USBSOURCES)/usbd_req.c
 SRC += $(USBSOURCES)/usb_dcd.c
@@ -68,6 +67,7 @@ SRC += $(USBSOURCES)/usb_bsp.c
 SRC += $(USBSOURCES)/usbd_desc.c
 SRC += $(USBSOURCES)/stm32f401_discovery.c
 #SRC += src/stm32f4xx_it.c
+SRC += src/usbd_hid_core.c
 SRC += main.c
 
 

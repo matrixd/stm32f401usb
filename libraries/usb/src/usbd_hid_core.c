@@ -181,17 +181,17 @@ __ALIGN_BEGIN static uint8_t USBD_HID_CfgDesc[USB_HID_CONFIG_DESC_SIZ] __ALIGN_E
   0x00,         /*bAlternateSetting: Alternate setting*/
   0x01,         /*bNumEndpoints*/
   0x03,         /*bInterfaceClass: HID*/
-  0x01,         /*bInterfaceSubClass : 1=BOOT, 0=no boot*/
-  0x02,         /*nInterfaceProtocol : 0=none, 1=keyboard, 2=mouse*/
+  0x00,         /*bInterfaceSubClass : 1=BOOT, 0=no boot*/
+  0x00,         /*nInterfaceProtocol : 0=none, 1=keyboard, 2=mouse*/
   0,            /*iInterface: Index of string descriptor*/
   /******************** Descriptor of Joystick Mouse HID ********************/
   /* 18 */
   0x09,         /*bLength: HID Descriptor size*/
   HID_DESCRIPTOR_TYPE, /*bDescriptorType: HID*/
-  0x11,         /*bcdHID: HID Class Spec release number*/
-  0x01,
+  0x03,         /*bcdHID: HID Class Spec release number*/
+  0x00,
   0x00,         /*bCountryCode: Hardware target country*/
-  0x01,         /*bNumDescriptors: Number of HID class descriptors to follow*/
+  0x03,         /*bNumDescriptors: Number of HID class descriptors to follow*/
   0x22,         /*bDescriptorType*/
   HID_MOUSE_REPORT_DESC_SIZE,/*wItemLength: Total length of Report descriptor*/
   0x00,
@@ -218,8 +218,8 @@ __ALIGN_BEGIN static uint8_t USBD_HID_Desc[USB_HID_DESC_SIZ] __ALIGN_END=
   /* 18 */
   0x09,         /*bLength: HID Descriptor size*/
   HID_DESCRIPTOR_TYPE, /*bDescriptorType: HID*/
-  0x11,         /*bcdHID: HID Class Spec release number*/
-  0x01,
+  0x03,         /*bcdHID: HID Class Spec release number*/
+  0x00,
   0x00,         /*bCountryCode: Hardware target country*/
   0x01,         /*bNumDescriptors: Number of HID class descriptors to follow*/
   0x22,         /*bDescriptorType*/
@@ -282,7 +282,101 @@ __ALIGN_BEGIN static uint8_t HID_MOUSE_ReportDesc[HID_MOUSE_REPORT_DESC_SIZE] __
   0x01,   0xb1,
   
   0x01,   0xc0
-}; 
+};
+/*{
+    0x06, 0x00, 0xff,              // USAGE_PAGE (Generic Desktop)
+    0x09, 0x01,                    // USAGE (Vendor Usage 1)
+    0xa1, 0x01,                    // COLLECTION (Application)
+    0x85, 0x01,                    //   REPORT_ID (1)
+    0x09, 0x01,                    //   USAGE (Vendor Usage 1)
+    0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
+    0x25, 0x01,                    //   LOGICAL_MAXIMUM (1)
+    0x75, 0x08,                    //   REPORT_SIZE (8)
+    0x95, 0x01,                    //   REPORT_COUNT (1)
+    0xb1, 0x82,                    //   FEATURE (Data,Var,Abs,Vol)
+    0x85, 0x01,                    //   REPORT_ID (1)
+    0x09, 0x01,                    //   USAGE (Vendor Usage 1)
+    0x91, 0x82,                    //   OUTPUT (Data,Var,Abs,Vol)
+
+    0x85, 0x02,                    //   REPORT_ID (2)
+    0x09, 0x02,                    //   USAGE (Vendor Usage 2)
+    0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
+    0x25, 0x01,                    //   LOGICAL_MAXIMUM (1)
+    0x75, 0x08,                    //   REPORT_SIZE (8)
+    0x95, 0x75,                    //   REPORT_COUNT (1)
+    0xb1, 0x82,                    //   FEATURE (Data,Var,Abs,Vol)
+    0x85, 0x02,                    //   REPORT_ID (2)
+    0x09, 0x02,                    //   USAGE (Vendor Usage 2)
+    0x91, 0x82,                    //   OUTPUT (Data,Var,Abs,Vol)
+
+    0x85, 0x03,                    //   REPORT_ID (3)
+    0x09, 0x03,                    //   USAGE (Vendor Usage 3)
+    0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
+    0x26, 0xff, 0x00,              //   LOGICAL_MAXIMUM (255)
+    0x75, 0x08,                    //   REPORT_SIZE (8)
+    0x95, 0x01,                    //   REPORT_COUNT (N)
+    0xb1, 0x82,                    //   FEATURE (Data,Var,Abs,Vol)
+    0x85, 0x03,                    //   REPORT_ID (3)
+    0x09, 0x03,                    //   USAGE (Vendor Usage 3)
+    0x91, 0x82,                    //   OUTPUT (Data,Var,Abs,Vol)
+
+    0x85, 0x04,                    //   REPORT_ID (4)
+    0x09, 0x04,                    //   USAGE (Vendor Usage 4)
+    0x75, 0x08,                    //   REPORT_SIZE (8)
+    0x95, 0x75,                    //   REPORT_COUNT (N)
+    0x81, 0x82,                    //   INPUT (Data,Var,Abs,Vol)
+    0xc0                           // END_COLLECTION
+};*/
+/*
+{
+  0x05,   0x01,
+  0x09,   0x02,
+  0xA1,   0x01,
+  0x09,   0x01,
+
+  0xA1,   0x00,
+  0x05,   0x09,
+  0x19,   0x01,
+  0x29,   0x03,
+
+  0x15,   0x00,
+  0x25,   0x01,
+  0x95,   0x03,
+  0x75,   0x01,
+
+  0x81,   0x02,
+  0x95,   0x01,
+  0x75,   0x05,
+  0x81,   0x01,
+
+  0x05,   0x01,
+  0x09,   0x30,
+  0x09,   0x31,
+  0x09,   0x38,
+
+  0x15,   0x81,
+  0x25,   0x7F,
+  0x75,   0x08,
+  0x95,   0x03,
+
+  0x81,   0x06,
+  0xC0,   0x09,
+  0x3c,   0x05,
+  0xff,   0x09,
+
+  0x01,   0x15,
+  0x00,   0x25,
+  0x01,   0x75,
+  0x01,   0x95,
+
+  0x02,   0xb1,
+  0x22,   0x75,
+  0x06,   0x95,
+  0x01,   0xb1,
+
+  0x01,   0xc0
+};
+ */
 
 /**
   * @}
