@@ -57,8 +57,8 @@
 #define HID_IN_EP                    0x81
 #define HID_OUT_EP                   0x01
 
-#define HID_IN_PACKET                4
-#define HID_OUT_PACKET               4
+#define HID_IN_PACKET                1
+#define HID_OUT_PACKET               1
 
 /**
   * @}

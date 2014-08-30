@@ -95,7 +95,7 @@ __ALIGN_BEGIN static uint8_t USBD_HID_CfgDesc[USB_HID_CONFIG_DESC_SIZ] __ALIGN_E
   0x0A,          /*bInterval: Polling Interval (10 ms)*/
 };
 
-__ALIGN_BEGIN static uint8_t HID_ReportDesc[HID_REPORT_DESC_SIZE] __ALIGN_END =
+/*__ALIGN_BEGIN static uint8_t HID_ReportDesc[HID_REPORT_DESC_SIZE] __ALIGN_END =
 {
     0x06, 0x01, 0xff,              // USAGE_PAGE (Generic Desktop)
     0x09, 0x01,                    // USAGE (Vendor Usage 1)
@@ -103,12 +103,25 @@ __ALIGN_BEGIN static uint8_t HID_ReportDesc[HID_REPORT_DESC_SIZE] __ALIGN_END =
     0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
     0x26, 0xff, 0x00,              //   LOGICAL_MAXIMUM (255)
     0x75, 0x08,                    //   REPORT_SIZE (8)
-    0x95, 0x08,                    //   REPORT_COUNT (8)
+    0x95, 0x20,                    //   REPORT_COUNT (8)
     0x09, 0x00,                    //   USAGE (Undefined)
     0x82, 0x02, 0x01,              //   INPUT (Data,Var,Abs,Buf)
     0x95, HID_REPORT_COUNT, //   REPORT_COUNT (32)
     0x09, 0x00,                    //   USAGE (Undefined)
     0xb2, 0x02, 0x01,              //   FEATURE (Data,Var,Abs,Buf)
+    0xc0                           // END_COLLECTION
+};*/
+__ALIGN_BEGIN static uint8_t HID_ReportDesc[HID_REPORT_DESC_SIZE] __ALIGN_END =
+{
+    0x06, 0x01, 0xff,              // USAGE_PAGE (Generic Desktop)
+    0x09, 0x01,                    // USAGE (Vendor Usage 1)
+    0xa1, 0x01,                    // COLLECTION (Application)
+    0x09, 0x00,                    //   USAGE (Undefined)
+    0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
+    0x26, 0x01, 0x00,              //   LOGICAL_MAXIMUM (1)
+    0x75, 0x08,                    //   REPORT_SIZE (8)
+    0x95, 0x04,                    //   REPORT_COUNT (8)
+    0x82, 0x03, 0x01,             //   INPUT (Data,Var,Abs,Buf)
     0xc0                           // END_COLLECTION
 };
 

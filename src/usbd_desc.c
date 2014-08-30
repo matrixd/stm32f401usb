@@ -54,7 +54,7 @@
   * @{
   */ 
 
-#define USBD_VID                     0x0481
+#define USBD_VID                     0xf055
 #define USBD_PID                     0x5719
 
 #define USBD_LANGID_STRING            0x409

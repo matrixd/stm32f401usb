@@ -90,6 +90,10 @@ void blink(void){
 
 int main(void){
     ledInit();
+    to_usb.write = 0;
+    to_usb.read = 0;
+    to_spi.read = 0;
+    to_spi.write = 0;
     USBD_Init(&USB_OTG_dev,
                 USB_OTG_FS_CORE_ID,
                 &USR_desc,
@@ -97,12 +101,35 @@ int main(void){
                 &USR_cb);
     spiInit();
     SysTick_Config(SystemCoreClock / 1000);
-    uint8_t buf[] = "hello\0";
+    uint8_t buf[] = "hell";
     while(1) {
-        blink();
         USBD_HID_SendReport (&USB_OTG_dev,
-                                   buf,
-                                   6);
+                                               buf,
+                                               4);
+        blink();
+        /*//to_spi.write = 1;
+        //to_spi.buf[0] = 0x07;
+        to_usb.write = 4;
+        to_usb.buf[0] = 0x07;
+        to_usb.buf[1] = 0x07;
+        to_usb.buf[2] = 0x07;
+        to_usb.buf[3] = 0x07;
+        if(to_spi.write > 0){
+            while(to_spi.write > to_spi.read){
+                            SPI1->DR = to_spi.buf[to_spi.read]-0x30;
+                            to_spi.read++;
+                            while(!(SPI1->SR & SPI_SR_TXE));
+                        }
+                        to_spi.write = 0;
+                        to_spi.read = 0;
+        }
+        if(to_usb.write > 0){
+            USBD_HID_SendReport (&USB_OTG_dev,
+                                       to_usb.buf,
+                                       to_usb.write);
+            blink();
+            to_usb.write = 0;
+        }*/
     }
 }
 
