@@ -5,7 +5,7 @@
  *      Author: matrixd
  */
 #include "usbd_core.h"
-#include "usbd_hid_core.h"
+#include "usbd_cdc_core.h"
 #include "usbd_usr.h"
 #include "usbd_desc.h"
 #include "stm32f4xx.h"
@@ -94,19 +94,22 @@ int main(void){
     to_usb.read = 0;
     to_spi.read = 0;
     to_spi.write = 0;
+    SysTick_Config(SystemCoreClock / 1000);
     USBD_Init(&USB_OTG_dev,
                 USB_OTG_FS_CORE_ID,
                 &USR_desc,
-                &USBD_HID_cb,
+                &USBD_CDC_cb,
                 &USR_cb);
-    spiInit();
-    SysTick_Config(SystemCoreClock / 1000);
-    uint8_t buf[] = "hell";
+    //spiInit();
+    uint8_t buf[] = "hell0hell0hell0hell0hell0hell0";
+    uint8_t co = 0;
     while(1) {
-        USBD_HID_SendReport (&USB_OTG_dev,
-                                               buf,
-                                               4);
-        blink();
+
+        /*USBD_HID_SendReport (&USB_OTG_dev,
+                                      buf,
+                                        4);*/
+        DCD_EP_Tx (&USB_OTG_dev, HID_IN_EP, buf, 30);
+        //blink();
         /*//to_spi.write = 1;
         //to_spi.buf[0] = 0x07;
         to_usb.write = 4;
@@ -150,6 +153,16 @@ void OTG_FS_IRQHandler(void)
 {
   USBD_OTG_ISR_Handler (&USB_OTG_dev);
 }
+
+/*void OTG_HS_EP1_IN_IRQHandler(void){
+    USBD_HID_SendReport (&USB_OTG_dev,
+                                          buf,
+                                            4);
+    blink();
+}
+void OTG_HS_EP1_OUT_IRQHandler(void){
+    blink();blink();
+}*/
 
 void SysTick_Handler(void){
     if(delay_time != 0){

@@ -1,14 +1,14 @@
 /**
   ******************************************************************************
-  * @file    usbd_conf.h
+  * @file    usbd_cdc_if_template.h
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    11-September-2013
-  * @brief   USB Device configuration file
+  * @version V1.1.0
+  * @date    19-March-2012
+  * @brief   Header for dfu_mal.c file.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -26,74 +26,21 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __USBD_CONF__H__
-#define __USBD_CONF__H__
+#ifndef __USBD_CDC_IF_TEMPLATE_H
+#define __USBD_CDC_IF_TEMPLATE_H
 
 /* Includes ------------------------------------------------------------------*/
-#include   "stm32f401_discovery.h"
+#include "usb_conf.h"
+#include "usbd_conf.h"
+#include "usbd_cdc_core.h"
 
-/** @defgroup USB_CONF_Exported_Defines
-  * @{
-  */ 
+/* Exported types ------------------------------------------------------------*/
+/* Exported constants --------------------------------------------------------*/
 
+extern CDC_IF_Prop_TypeDef  TEMPLATE_fops;
 
-#define USBD_CFG_MAX_NUM           1
-#define USBD_ITF_MAX_NUM           1
-
-#define USB_MAX_STR_DESC_SIZ       64 
-
-
-
-#define USBD_DYNAMIC_DESCRIPTOR_CHANGE_ENABLED 
-
-/** @defgroup USB_String_Descriptors
-  * @{
-  */ 
-
-
-/** @defgroup USB_HID_Class_Layer_Parameter
-  * @{
-  */ 
-#define HID_IN_EP                    0x81
-#define HID_OUT_EP                   0x01
-
-#define HID_IN_PACKET                255
-#define HID_OUT_PACKET               255
-
-/**
-  * @}
-  */ 
-/** @defgroup USB_CONF_Exported_Types
-  * @{
-  */ 
-/**
-  * @}
-  */ 
-
-
-/** @defgroup USB_CONF_Exported_Macros
-  * @{
-  */ 
-/**
-  * @}
-  */ 
-
-/** @defgroup USB_CONF_Exported_Variables
-  * @{
-  */ 
-/**
-  * @}
-  */ 
-
-/** @defgroup USB_CONF_Exported_FunctionsPrototype
-  * @{
-  */ 
-/**
-  * @}
-  */ 
-
-
-#endif //__USBD_CONF__H__
+/* Exported macro ------------------------------------------------------------*/
+/* Exported functions ------------------------------------------------------- */
+#endif /* __USBD_CDC_IF_TEMPLATE_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
-
